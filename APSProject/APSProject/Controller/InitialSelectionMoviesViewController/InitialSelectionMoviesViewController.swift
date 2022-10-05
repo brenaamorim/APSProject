@@ -24,9 +24,10 @@ class InitialSelectionMoviesViewController: UIViewController {
     let buttonLogOut: UIButton = {
         let button = UIButton()
         button.setTitle("Sair", for: .normal)
-        button.titleLabel?.font = UIFont.systemFont(ofSize: 15, weight: .medium)
+        button.titleLabel?.font = UIFont.systemFont(ofSize: 20, weight: .medium)
         button.setTitleColor(.actionColor, for: .normal)
         button.tintColor = .actionColor
+        button.contentHorizontalAlignment = .right
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
@@ -73,7 +74,8 @@ class InitialSelectionMoviesViewController: UIViewController {
         
         NSLayoutConstraint.activate([
             stackView.topAnchor.constraint(equalTo: view.topAnchor, constant: 76),
-            stackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16)
+            stackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
+            stackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16)
         ])
 
         view.addSubview(collectionView)
@@ -87,6 +89,8 @@ class InitialSelectionMoviesViewController: UIViewController {
 
     @objc func didTapLogOutButton() {
         GIDSignIn.sharedInstance().signOut()
+        UserDefaults.standard.set(false, forKey: "isLogged")
+        navigationController?.popViewController(animated: true)
     }
 }
 

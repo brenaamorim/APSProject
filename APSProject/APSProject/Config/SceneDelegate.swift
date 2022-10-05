@@ -19,9 +19,12 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate, GIDSignInDelegate {
       
         let window = UIWindow(windowScene: windowScene)
         
-        if Auth.auth().currentUser != nil {
+        let isLogged = UserDefaults.standard.bool(forKey: "isLogged")
+        if Auth.auth().currentUser != nil && isLogged {
             // redirect to the initial controller
-            window.rootViewController = UINavigationController(rootViewController: InitialSelectionMoviesViewController())
+            let navigation = UINavigationController(rootViewController: InitialSelectionMoviesViewController())
+            navigation.viewControllers = [LoginViewController(), InitialSelectionMoviesViewController()]
+            window.rootViewController = navigation
             window.makeKeyAndVisible()
             self.window = window
         } else {
@@ -47,10 +50,16 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate, GIDSignInDelegate {
                 print(error.localizedDescription)
                 return
             }
-            let destination = UINavigationController(rootViewController: InitialSelectionMoviesViewController())
-            // redirect the user to the InitialSelectionMoviesViewController
-            self.window!.rootViewController = destination
-            self.window!.makeKeyAndVisible()
+            UserDefaults.standard.set(true, forKey: "isLogged")
+            let destination = InitialSelectionMoviesViewController()
+            if let window = self.window, let rootViewController = window.rootViewController {
+                if let navigationController = rootViewController as? UINavigationController {
+                    navigationController.pushViewController(destination, animated: true)
+                }
+                else {
+                    print("Navigation Controller not Found")
+                }
+            }
         }
     }
 
