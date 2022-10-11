@@ -1,10 +1,3 @@
-//
-//  UIViewController+LargeTitle.swift
-//  CineTime
-//
-//  Created by Vinicius Mesquita on 17/06/20.
-//  Copyright © 2020 Beatriz Carlos. All rights reserved.
-//
 
 import UIKit
 

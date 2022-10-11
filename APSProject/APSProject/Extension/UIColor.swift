@@ -1,10 +1,3 @@
-//
-//  UIColor.swift
-//  CineTime
-//
-//  Created by Beatriz Carlos on 09/06/20.
-//  Copyright © 2020 Beatriz Carlos. All rights reserved.
-//
 
 import UIKit
 

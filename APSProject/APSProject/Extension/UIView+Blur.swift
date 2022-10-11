@@ -1,13 +1,7 @@
-//
-//  UIView+Blur.swift
-//  Blur
-//
-//  Created by Roman Sorochak <roman.sorochak@gmail.com> on 6/27/17.
-//  Copyright :copyright: 2017 MagicLab. All rights reserved.
-//
+
 import UIKit
 
-//extension RecoCollectionView{
+//extension RecoCollectionView {
 //    public func blurEffect(bg : UIImageView, context : CIContext) {
 //
 //        let currentFilter = CIFilter(name: "CIGaussianBlur")

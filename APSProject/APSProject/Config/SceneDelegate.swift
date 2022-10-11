@@ -1,9 +1,3 @@
-//
-//  SceneDelegate.swift
-//  APSProject
-//
-//  Created by Brena Amorim on 02/10/22.
-//
 
 import UIKit
 import Firebase

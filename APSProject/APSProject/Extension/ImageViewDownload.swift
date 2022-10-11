@@ -1,10 +1,3 @@
-//
-//  ImageViewDownload.swift
-//  CineTime
-//
-//  Created by Leonardo Gomes on 21/06/20.
-//  Copyright © 2020 Beatriz Carlos. All rights reserved.
-//
 
 import Foundation
 import UIKit

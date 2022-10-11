@@ -1,10 +1,3 @@
-//
-//  UISearch.swift
-//  CineTime
-//
-//  Created by Beatriz Carlos on 16/06/20.
-//  Copyright © 2020 Beatriz Carlos. All rights reserved.
-//
 
 import UIKit
 

@@ -1,9 +1,3 @@
-//
-//  AppDelegate.swift
-//  APSProject
-//
-//  Created by Brena Amorim on 02/10/22.
-//
 
 import Firebase
 import GoogleSignIn
