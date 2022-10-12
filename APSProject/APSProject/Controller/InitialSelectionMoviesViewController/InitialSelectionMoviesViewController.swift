@@ -117,6 +117,8 @@ class InitialSelectionMoviesViewController: UIViewController {
     }
 
     @objc func didContinueButton() {
+        let tabBarViewController = TabBarViewController()
+        navigationController?.pushViewController(tabBarViewController, animated: true)
         print(moviesSelectedIds)
         print("continue")
     }
