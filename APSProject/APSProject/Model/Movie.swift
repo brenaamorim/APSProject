@@ -2,10 +2,10 @@
 import Foundation
 
 struct FilmResult: Codable {
-    let page: Int
-    let total_results: Int
-    let total_pages: Int
-    let results: [Film]
+    let page: Int?
+    let total_results: Int?
+    let total_pages: Int?
+    let results: [Film]?
 }
 
 struct Film: Codable, Equatable {

@@ -4,7 +4,8 @@ import GoogleSignIn
 import Firebase
 
 class InitialSelectionMoviesViewController: UIViewController {
-    var data = [UIColor.white]
+    var randomMovies = [Film]()
+    var page: Int = 1
     
     let lbltitle: UILabel = {
         let label = UILabel()
@@ -43,8 +44,18 @@ class InitialSelectionMoviesViewController: UIViewController {
         layout.itemSize = CGSize(width: 105, height: 151)
         layout.scrollDirection = .vertical
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
+        collectionView.showsVerticalScrollIndicator = true
+        collectionView.indicatorStyle = .white
+        collectionView.tintColor = .actionColor
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         return collectionView
+    }()
+    
+    lazy var activityIndicator: UIActivityIndicatorView = {
+        let spinner = UIActivityIndicatorView(style: .medium)
+        spinner.frame = CGRect(x: 0, y: 0, width: collectionView.bounds.width, height: 44)
+        spinner.startAnimating()
+        return spinner
     }()
     
     override func viewDidLoad() {
@@ -59,6 +70,11 @@ class InitialSelectionMoviesViewController: UIViewController {
         self.collectionView.register(TitlesCollectionCell.self, forCellWithReuseIdentifier: "TitlesCell")
         self.collectionView.alwaysBounceVertical = true
         self.collectionView.backgroundColor = .black
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        startLoading()
+        getRandomMovies(page: 1)
     }
 
     func setupLayout() {
@@ -81,10 +97,44 @@ class InitialSelectionMoviesViewController: UIViewController {
         ])
     }
 
+    func setConstraints(for view: UIView?) {
+        view?.centerXAnchor.constraint(equalTo: collectionView.centerXAnchor).isActive = true
+        view?.centerYAnchor.constraint(equalTo: collectionView.centerYAnchor).isActive = true
+    }
+
+    func startLoading() {
+        collectionView.backgroundView = activityIndicator
+        setConstraints(for: activityIndicator)
+    }
+    
+    func stopLoading() {
+        collectionView.backgroundView = nil
+    }
+
     @objc func didTapLogOutButton() {
         GIDSignIn.sharedInstance().signOut()
         UserDefaults.standard.set(false, forKey: "isLogged")
         navigationController?.popViewController(animated: true)
+    }
+}
+
+extension InitialSelectionMoviesViewController {
+    func getRandomMovies(page: Int) {
+        stopLoading()
+        Service.shared.getRandomMovies(page: page) { films in
+            guard let films = films else {
+                return
+            }
+            films.forEach({ film in
+                if (film.poster_path != nil) {
+                    self.randomMovies.append(film)
+                }
+                DispatchQueue.main.async {
+                    self.collectionView.reloadData()
+                }
+            })
+            
+        }
     }
 }
 
@@ -98,14 +148,23 @@ extension InitialSelectionMoviesViewController: UICollectionViewDelegate {
 
 extension InitialSelectionMoviesViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 10
+        return randomMovies.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "TitlesCell", for: indexPath) as! TitlesCollectionCell
         
-        let urlPoster = "https://image.tmdb.org/t/p/w500/pB8BM7pdSp6B6Ih7QZ4DrQ3PmJK.jpg"
+        let urlPoster = "https://image.tmdb.org/t/p/w500" + randomMovies[indexPath.row].poster_path!
         cell.imageTitle.downloaded(from: urlPoster)
         return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+        let lastElement = randomMovies.count - 1
+        if indexPath.row == lastElement {
+            startLoading()
+            page = page + 1
+            getRandomMovies(page: page)
+        }
     }
 }

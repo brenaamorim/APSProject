@@ -7,6 +7,27 @@ class Service {
     
     private init() { }
     
+    func getRandomMovies(page: Int, completion: @escaping ([Film]?) -> Void) {
+        
+        let api = FilmsAPI(route: .discover(page: page))
+        
+        guard let url = api.url else { return }
+        
+        
+        HTTP.get.request(url: url) { (data, response, error) in
+            guard let data = data else { return }
+            
+            do {
+                let results = try JSONDecoder().decode(FilmResult.self, from: data)
+                let films = results.results
+                completion(films)
+            } catch {
+                print(error)
+            }
+            
+        }
+    }
+    
 //    func findFilmByGenre(with genresId: [String], completion: @escaping ([Film]?) -> Void) {}
     
     func getTrailer(filmId: String, mediaType: String, completion: @escaping ([Trailer]?) -> Void) {

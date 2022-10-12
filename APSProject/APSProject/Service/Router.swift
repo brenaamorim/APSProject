@@ -12,6 +12,7 @@ enum Router {
     case searchByName(name: String)
     case getImageFilm(name: String)
     case createList
+    case discover(page: Int)
 }
 
 struct FilmsAPI {
@@ -19,6 +20,7 @@ struct FilmsAPI {
     let hostname: String = "https://api.themoviedb.org/3"
     let imageHostnane: String = "https://image.tmdb.org"
     var language: String = "language=pt-BR"
+    var region: String = "region=BR"
     let key: String = ""
     var page: Int = 1
     
@@ -45,11 +47,16 @@ struct FilmsAPI {
                 return URL(string: "\(imageHostnane)/t/p/w500\(name)")
             case .createList:
                 return URL(string: "\(hostname)/list?api_key=\(key)")
+            case .discover(let page):
+                return URL(string: "\(hostname)/discover/movie?api_key=\(key)&\(language)&\(region)&sort_by=vote_average.desc&include_adult=false&include_video=false&page=\(page)&vote_count.gte=50&with_watch_monetization_types=flatrate")
             }
         }
 
         
         /*
+         Example discover request (for random movies):
+         https://api.themoviedb.org/3/discover/movie?api_key=()&language=pt-BR&region=BR&sort_by=vote_average.desc&include_adult=false&include_video=false&page=1&vote_count.gte=50&with_watch_monetization_types=flatrate
+         
          Example genre request:
          https://api.themoviedb.org/3/discover/movie?with_genres=28&page=1&api_key=a1d23d9e0cc08e49e4703408659fe47c&language=pt-BR
          
