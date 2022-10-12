@@ -2,6 +2,7 @@
 import UIKit
 
 class TitlesCollectionCell: UICollectionViewCell {
+    let actionCgColor = CGColor(red: 1.00, green: 0.86, blue: 0.38, alpha: 1.00)
 
     var imageTitle: UIImageView = {
         let iv = UIImageView()
@@ -30,7 +31,7 @@ class TitlesCollectionCell: UICollectionViewCell {
     override var isSelected: Bool {
         didSet {
             if isSelected {
-                layer.borderColor = UIColor.yellow.cgColor
+                layer.borderColor = actionCgColor
                 layer.borderWidth = 2
             } else {
                 layer.borderColor = UIColor.clear.cgColor

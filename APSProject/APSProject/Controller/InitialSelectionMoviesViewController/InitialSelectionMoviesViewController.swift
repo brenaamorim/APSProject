@@ -4,23 +4,27 @@ import GoogleSignIn
 import Firebase
 
 class InitialSelectionMoviesViewController: UIViewController {
-    var randomMovies = [Film]()
-    var page: Int = 1
+    private var randomMovies = [Film]()
+    private var moviesSelectedIds: [Int] = []
+    private var page: Int = 1
     
     let lbltitle: UILabel = {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 17, weight: .semibold)
+        label.textAlignment = .left
         label.textColor = .white
         label.text = "Selecione 3 filmes que você gosta"
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
     
-    let buttonLogOut: UIButton = {
+    let buttonContinue: UIButton = {
         let button = UIButton()
-        button.setTitle("Sair", for: .normal)
-        button.titleLabel?.font = UIFont.systemFont(ofSize: 20, weight: .medium)
+        button.setTitle("Continuar", for: .normal)
+        button.titleLabel?.font = UIFont.systemFont(ofSize: 17, weight: .medium)
         button.setTitleColor(.actionColor, for: .normal)
+        button.setTitleColor(UIColor.gray, for: .disabled)
+        button.isEnabled = false
         button.tintColor = .actionColor
         button.contentHorizontalAlignment = .right
         button.translatesAutoresizingMaskIntoConstraints = false
@@ -29,8 +33,7 @@ class InitialSelectionMoviesViewController: UIViewController {
 
     let stackView: UIStackView = {
         let stack = UIStackView()
-        stack.axis = .horizontal
-        stack.alignment = .center
+        stack.axis = .vertical
         stack.distribution = .fillProportionally
         stack.spacing = 0
         stack.clipsToBounds = true
@@ -47,12 +50,14 @@ class InitialSelectionMoviesViewController: UIViewController {
         collectionView.showsVerticalScrollIndicator = true
         collectionView.indicatorStyle = .white
         collectionView.tintColor = .actionColor
+        collectionView.allowsMultipleSelection = true
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         return collectionView
     }()
     
     lazy var activityIndicator: UIActivityIndicatorView = {
         let spinner = UIActivityIndicatorView(style: .medium)
+        spinner.color = .actionColor
         spinner.frame = CGRect(x: 0, y: 0, width: collectionView.bounds.width, height: 44)
         spinner.startAnimating()
         return spinner
@@ -63,7 +68,7 @@ class InitialSelectionMoviesViewController: UIViewController {
         setupLayout()
         
         navigationController?.isNavigationBarHidden = true
-        buttonLogOut.addTarget(self, action: #selector(didTapLogOutButton), for: .touchUpInside)
+        buttonContinue.addTarget(self, action: #selector(didContinueButton), for: .touchUpInside)
         
         self.collectionView.dataSource = self
         self.collectionView.delegate = self
@@ -79,8 +84,8 @@ class InitialSelectionMoviesViewController: UIViewController {
 
     func setupLayout() {
         view.addSubview(stackView)
+        stackView.addArrangedSubview(buttonContinue)
         stackView.addArrangedSubview(lbltitle)
-        stackView.addArrangedSubview(buttonLogOut)
         
         NSLayoutConstraint.activate([
             stackView.topAnchor.constraint(equalTo: view.topAnchor, constant: 76),
@@ -111,11 +116,16 @@ class InitialSelectionMoviesViewController: UIViewController {
         collectionView.backgroundView = nil
     }
 
-    @objc func didTapLogOutButton() {
-        GIDSignIn.sharedInstance().signOut()
-        UserDefaults.standard.set(false, forKey: "isLogged")
-        navigationController?.popViewController(animated: true)
+    @objc func didContinueButton() {
+        print(moviesSelectedIds)
+        print("continue")
     }
+
+//    @objc func didTapLogOutButton() {
+//        GIDSignIn.sharedInstance().signOut()
+//        UserDefaults.standard.set(false, forKey: "isLogged")
+//        navigationController?.popViewController(animated: true)
+//    }
 }
 
 extension InitialSelectionMoviesViewController {
@@ -126,7 +136,7 @@ extension InitialSelectionMoviesViewController {
                 return
             }
             films.forEach({ film in
-                if (film.poster_path != nil) {
+                if film.poster_path != nil && !self.randomMovies.contains(film) {
                     self.randomMovies.append(film)
                 }
                 DispatchQueue.main.async {
@@ -140,9 +150,23 @@ extension InitialSelectionMoviesViewController {
 
 extension InitialSelectionMoviesViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "TitlesCell", for: indexPath) as! TitlesCollectionCell
-        cell.layer.borderWidth = 0.5
-        cell.layer.borderColor = CGColor(red: 1.00, green: 0.86, blue: 0.38, alpha: 1.00)
+        if moviesSelectedIds.count < 3 {
+            moviesSelectedIds.append(randomMovies[indexPath.row].id)
+        }
+        
+        if moviesSelectedIds.count == 3 {
+            buttonContinue.isEnabled = true
+        }
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
+        if let index = moviesSelectedIds.firstIndex(of: randomMovies[indexPath.row].id) {
+            moviesSelectedIds.remove(at: index)
+        }
+    }
+
+    func collectionView(_ collectionView: UICollectionView, shouldSelectItemAt indexPath: IndexPath) -> Bool {
+        return collectionView.indexPathsForSelectedItems!.count <=  2
     }
 }
 
