@@ -117,17 +117,14 @@ class InitialSelectionMoviesViewController: UIViewController {
     }
 
     @objc func didContinueButton() {
+        UserDefaults.standard.set(moviesSelectedIds, forKey: "moviesSelectedIds")
+
         let tabBarViewController = TabBarViewController()
         navigationController?.pushViewController(tabBarViewController, animated: true)
         print(moviesSelectedIds)
         print("continue")
     }
 
-//    @objc func didTapLogOutButton() {
-//        GIDSignIn.sharedInstance().signOut()
-//        UserDefaults.standard.set(false, forKey: "isLogged")
-//        navigationController?.popViewController(animated: true)
-//    }
 }
 
 extension InitialSelectionMoviesViewController {

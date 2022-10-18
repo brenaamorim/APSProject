@@ -22,8 +22,11 @@ class TabBarViewController: UITabBarController {
 
         let myListVC = UINavigationController(rootViewController: MyListViewController())
         myListVC.tabBarItem = UITabBarItem(title: "Minha Lista", image: UIImage(named: "line.horizontal.3"), tag: 2)
+        
+        let profileVC = UINavigationController(rootViewController: ProfileViewController())
+        profileVC.tabBarItem = UITabBarItem(title: "Perfil", image: UIImage(systemName: "person.fill"), tag: 3)
 
-        viewControllers = [recommendationsVC, categoriesVC, myListVC]
+        viewControllers = [recommendationsVC, categoriesVC, myListVC, profileVC]
     }
     
     override func tabBar(_ tabBar: UITabBar, didSelect item: UITabBarItem) {

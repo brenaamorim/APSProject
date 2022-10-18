@@ -1,9 +1,3 @@
-//
-//  MyListViewController.swift
-//  APSProject
-//
-//  Created by Brena Amorim on 12/10/22.
-//
 
 import UIKit
 

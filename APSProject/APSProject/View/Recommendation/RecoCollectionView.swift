@@ -6,14 +6,16 @@ class RecoCollectionView: UICollectionView, UICollectionViewDelegate {
     let flowLayout = ZoomAndSnapFlowLayout()
     var context = CIContext(options: nil)
     let image =  UIImageView()
+    private let moviesSelectedIds = UserDefaults.standard.object(forKey: "moviesSelectedIds")
 //    weak var delegatePush: DelegatePushDescriptionViewController?
     
     var moviesAPI = [Film]()
     
     override init(frame: CGRect, collectionViewLayout layout: UICollectionViewLayout) {
         super.init(frame: frame, collectionViewLayout: layout)
-        
-        getRecoMovies()
+        guard let recommendationArray = moviesSelectedIds as? [Int] else { return }
+        guard let recommendationFilm = recommendationArray.first else { return }
+        getRecoMovies(filmId: "\(recommendationFilm)")
         
         self.dataSource = self
         self.delegate = self
@@ -31,11 +33,15 @@ class RecoCollectionView: UICollectionView, UICollectionViewDelegate {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func getRecoMovies() {
-        Service.shared.getRecomendations(filmId: "479455") { films in
+    func getRecoMovies(filmId: String) {
+        Service.shared.getRecomendations(filmId: filmId) { films in
             
             for i in 0...2 {
-                self.moviesAPI.append(films![i])
+                guard let films = films else {
+                    return
+                }
+
+                self.moviesAPI.append(films[i])
             }
             
             DispatchQueue.main.async {

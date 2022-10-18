@@ -21,7 +21,7 @@ struct FilmsAPI {
     let imageHostnane: String = "https://image.tmdb.org"
     var language: String = "language=pt-BR"
     var region: String = "region=BR"
-    let key: String = ""
+    let key: String = "d26dfc6d2ef132dd596b4373d8e4ad76"
     var page: Int = 1
     
     var route: Router
