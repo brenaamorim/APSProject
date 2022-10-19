@@ -10,6 +10,7 @@ class RecoCollectionView: UICollectionView, UICollectionViewDelegate {
 //    weak var delegatePush: DelegatePushDescriptionViewController?
     
     var moviesAPI = [Film]()
+    var countArray = 0
     
     override init(frame: CGRect, collectionViewLayout layout: UICollectionViewLayout) {
         super.init(frame: frame, collectionViewLayout: layout)
@@ -34,6 +35,7 @@ class RecoCollectionView: UICollectionView, UICollectionViewDelegate {
     }
     
     func getRecoMovies(filmId: String) {
+        self.moviesAPI = [Film]()
         Service.shared.getRecomendations(filmId: filmId) { films in
             
             for i in 0...2 {
@@ -41,7 +43,9 @@ class RecoCollectionView: UICollectionView, UICollectionViewDelegate {
                     return
                 }
 
-                self.moviesAPI.append(films[i])
+                if films.count > 0 {
+                    self.moviesAPI.append(films[i])
+                }
             }
             
             DispatchQueue.main.async {
@@ -96,4 +100,17 @@ extension RecoCollectionView: UICollectionViewDataSource {
 //    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
 //        delegatePush?.didSelect(movie: moviesAPI[indexPath.item])
 //    }
+}
+
+extension RecoCollectionView: RecommendationsCountDelegate {
+    func updateRecommendationsCount() {
+        countArray = countArray + 1
+        guard let recommendationArray = moviesSelectedIds as? [Int] else { return }
+        if countArray < recommendationArray.count {
+            getRecoMovies(filmId: "\(recommendationArray[countArray])")
+        } else {
+            countArray = 0
+            getRecoMovies(filmId: "\(recommendationArray[countArray])")
+        }
+    }
 }

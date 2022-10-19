@@ -1,10 +1,16 @@
 
 import UIKit
 
+protocol RecommendationsCountDelegate: AnyObject {
+    func updateRecommendationsCount()
+}
+
 class RecommendationsViewController: UIViewController {
     let indicationCollection = RecoCollectionView(frame: .zero, collectionViewLayout: ZoomAndSnapFlowLayout())
     let newsCollection = NewCollectionView(frame: .zero, collectionViewLayout: HorizontalFlowLayout())
 
+    weak var delegate: RecommendationsCountDelegate?
+    
     lazy var NewName: UILabel = {
         let label = UILabel(frame: .zero)
         label.textAlignment = .left
@@ -33,6 +39,7 @@ class RecommendationsViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.delegate = indicationCollection
         
         view.backgroundColor = .black
         navigationController?.navigationBar.barStyle  = .black
@@ -55,6 +62,7 @@ class RecommendationsViewController: UIViewController {
     
     @objc func teste() {
         print("teste")
+        delegate?.updateRecommendationsCount()
     }
 
     func configureAutoLayout() {

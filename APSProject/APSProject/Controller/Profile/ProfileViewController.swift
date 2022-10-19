@@ -1,9 +1,3 @@
-//
-//  ProfileViewController.swift
-//  APSProject
-//
-//  Created by Brena Amorim on 17/10/22.
-//
 
 import UIKit
 import GoogleSignIn
