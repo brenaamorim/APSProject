@@ -2,7 +2,7 @@
 import UIKit
 
 class NewCollectionView: UICollectionView, UICollectionViewDelegate {
-    
+    let repository = FilmRepository(with: "paraAssistir")
     var moviesAPI = [Film]()
 //    weak var delegatePush: DelegatePushDescriptionViewController?
     
@@ -37,6 +37,11 @@ class NewCollectionView: UICollectionView, UICollectionViewDelegate {
             }
         }
     }
+    
+    func saveInPlist(dataFilm: Film?) {
+        guard let dataFilm = dataFilm else { return }
+        repository.create(object: dataFilm)
+    }
 }
 
 extension NewCollectionView: UICollectionViewDataSource {
@@ -52,7 +57,8 @@ extension NewCollectionView: UICollectionViewDataSource {
         return cell
     }
     
-//    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        saveInPlist(dataFilm: moviesAPI[indexPath.item])
 //        delegatePush?.didSelect(movie: moviesAPI[indexPath.item])
-//    }
+    }
 }

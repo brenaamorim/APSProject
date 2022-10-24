@@ -2,7 +2,6 @@
 import UIKit
 
 class RecoCollectionView: UICollectionView, UICollectionViewDelegate {
-    
     let flowLayout = ZoomAndSnapFlowLayout()
     var context = CIContext(options: nil)
     let image =  UIImageView()

@@ -22,6 +22,15 @@
 		E61B90D728F7682E00B23304 /* MyListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E61B90D628F7682E00B23304 /* MyListViewController.swift */; };
 		E61B90DA28F7689B00B23304 /* RecommendationsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E61B90D928F7689B00B23304 /* RecommendationsViewController.swift */; };
 		E61B90DC28FE415600B23304 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E61B90DB28FE415600B23304 /* ProfileViewController.swift */; };
+		E69C044B290631D000E30829 /* PlistManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E69C044A290631D000E30829 /* PlistManager.swift */; };
+		E69C044D2906324600E30829 /* Repository.swift in Sources */ = {isa = PBXBuildFile; fileRef = E69C044C2906324600E30829 /* Repository.swift */; };
+		E69C044F2906327A00E30829 /* FilmRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = E69C044E2906327A00E30829 /* FilmRepository.swift */; };
+		E69C0451290632D300E30829 /* FilmViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E69C0450290632D300E30829 /* FilmViewModel.swift */; };
+		E69C0453290632F600E30829 /* MockRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = E69C0452290632F600E30829 /* MockRepository.swift */; };
+		E69C04552906346E00E30829 /* HeaderChildViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E69C04542906346E00E30829 /* HeaderChildViewController.swift */; };
+		E69C0458290634FD00E30829 /* MyListHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E69C0457290634FD00E30829 /* MyListHeaderView.swift */; };
+		E69C045A2906350800E30829 /* MyListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E69C04592906350800E30829 /* MyListTableViewCell.swift */; };
+		E69C045C2906351200E30829 /* MyListCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E69C045B2906351200E30829 /* MyListCollectionViewCell.swift */; };
 		E6D86C4728E94681006A46E7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6D86C4628E94681006A46E7 /* AppDelegate.swift */; };
 		E6D86C4928E94681006A46E7 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6D86C4828E94681006A46E7 /* SceneDelegate.swift */; };
 		E6D86C4B28E94681006A46E7 /* TabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6D86C4A28E94681006A46E7 /* TabBarViewController.swift */; };
@@ -89,6 +98,15 @@
 		E61B90D628F7682E00B23304 /* MyListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyListViewController.swift; sourceTree = "<group>"; };
 		E61B90D928F7689B00B23304 /* RecommendationsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecommendationsViewController.swift; sourceTree = "<group>"; };
 		E61B90DB28FE415600B23304 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		E69C044A290631D000E30829 /* PlistManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlistManager.swift; sourceTree = "<group>"; };
+		E69C044C2906324600E30829 /* Repository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Repository.swift; sourceTree = "<group>"; };
+		E69C044E2906327A00E30829 /* FilmRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilmRepository.swift; sourceTree = "<group>"; };
+		E69C0450290632D300E30829 /* FilmViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilmViewModel.swift; sourceTree = "<group>"; };
+		E69C0452290632F600E30829 /* MockRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockRepository.swift; sourceTree = "<group>"; };
+		E69C04542906346E00E30829 /* HeaderChildViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderChildViewController.swift; sourceTree = "<group>"; };
+		E69C0457290634FD00E30829 /* MyListHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyListHeaderView.swift; sourceTree = "<group>"; };
+		E69C04592906350800E30829 /* MyListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyListTableViewCell.swift; sourceTree = "<group>"; };
+		E69C045B2906351200E30829 /* MyListCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyListCollectionViewCell.swift; sourceTree = "<group>"; };
 		E6D86C4328E94681006A46E7 /* APSProject.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = APSProject.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E6D86C4628E94681006A46E7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E6D86C4828E94681006A46E7 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -194,6 +212,7 @@
 			isa = PBXGroup;
 			children = (
 				E61B90D628F7682E00B23304 /* MyListViewController.swift */,
+				E69C04542906346E00E30829 /* HeaderChildViewController.swift */,
 			);
 			path = MyList;
 			sourceTree = "<group>";
@@ -227,6 +246,35 @@
 			path = Profile;
 			sourceTree = "<group>";
 		};
+		E69C04482906317D00E30829 /* Manager */ = {
+			isa = PBXGroup;
+			children = (
+				E69C044A290631D000E30829 /* PlistManager.swift */,
+			);
+			path = Manager;
+			sourceTree = "<group>";
+		};
+		E69C04492906318600E30829 /* Repository */ = {
+			isa = PBXGroup;
+			children = (
+				E69C044C2906324600E30829 /* Repository.swift */,
+				E69C044E2906327A00E30829 /* FilmRepository.swift */,
+				E69C0450290632D300E30829 /* FilmViewModel.swift */,
+				E69C0452290632F600E30829 /* MockRepository.swift */,
+			);
+			path = Repository;
+			sourceTree = "<group>";
+		};
+		E69C0456290634ED00E30829 /* MyList */ = {
+			isa = PBXGroup;
+			children = (
+				E69C0457290634FD00E30829 /* MyListHeaderView.swift */,
+				E69C04592906350800E30829 /* MyListTableViewCell.swift */,
+				E69C045B2906351200E30829 /* MyListCollectionViewCell.swift */,
+			);
+			path = MyList;
+			sourceTree = "<group>";
+		};
 		E6D86C3A28E94681006A46E7 = {
 			isa = PBXGroup;
 			children = (
@@ -254,6 +302,8 @@
 			children = (
 				E6D86C7928E949D9006A46E7 /* Extension */,
 				E6D86C7828E9496C006A46E7 /* Config */,
+				E69C04482906317D00E30829 /* Manager */,
+				E69C04492906318600E30829 /* Repository */,
 				E61B90BE28F63C3300B23304 /* Service */,
 				E6D86C9228E9EA01006A46E7 /* Model */,
 				E6D86C7728E9495B006A46E7 /* View */,
@@ -300,6 +350,7 @@
 		E6D86C7728E9495B006A46E7 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				E69C0456290634ED00E30829 /* MyList */,
 				E61B90D828F7687600B23304 /* Recommendation */,
 				E6D86C9B28E9EBEC006A46E7 /* Search */,
 			);
@@ -647,21 +698,26 @@
 				E61B90D228F7679E00B23304 /* ZoomAndSnapFlowLayout.swift in Sources */,
 				E6D86C8728E94A02006A46E7 /* Constraints.swift in Sources */,
 				E61B90D528F7681700B23304 /* CategoriesViewController.swift in Sources */,
+				E69C04552906346E00E30829 /* HeaderChildViewController.swift in Sources */,
 				E61B90DC28FE415600B23304 /* ProfileViewController.swift in Sources */,
 				E6D86C9728E9EB5C006A46E7 /* Streaming.swift in Sources */,
 				E6D86C4B28E94681006A46E7 /* TabBarViewController.swift in Sources */,
 				E61B90D328F7679E00B23304 /* NewCollectionView.swift in Sources */,
 				E61B90DA28F7689B00B23304 /* RecommendationsViewController.swift in Sources */,
 				E6D86C8F28E94B2D006A46E7 /* LoginViewController.swift in Sources */,
+				E69C044B290631D000E30829 /* PlistManager.swift in Sources */,
 				E6D86C9D28E9EBEC006A46E7 /* TitlesCollectionViewCell.swift in Sources */,
 				E6D86C9A28E9EB82006A46E7 /* InitialSelectionMoviesViewController.swift in Sources */,
+				E69C044F2906327A00E30829 /* FilmRepository.swift in Sources */,
 				E61B90D728F7682E00B23304 /* MyListViewController.swift in Sources */,
 				E6D86C8A28E94A02006A46E7 /* UIViewController+LargeTitle.swift in Sources */,
+				E69C0458290634FD00E30829 /* MyListHeaderView.swift in Sources */,
 				E61B90C228F63C6800B23304 /* Router.swift in Sources */,
 				E61B90D028F7679E00B23304 /* NewsPosterCell.swift in Sources */,
 				E6D86C8828E94A02006A46E7 /* UIViewController+Child.swift in Sources */,
 				E6D86C8928E94A02006A46E7 /* UISearch.swift in Sources */,
 				E6D86C4728E94681006A46E7 /* AppDelegate.swift in Sources */,
+				E69C0453290632F600E30829 /* MockRepository.swift in Sources */,
 				E6D86C8428E94A02006A46E7 /* SearchAutoLayout.swift in Sources */,
 				E61B90C428F63C7300B23304 /* HTTP.swift in Sources */,
 				E6D86C8D28E94A02006A46E7 /* UIColor.swift in Sources */,
@@ -669,6 +725,10 @@
 				E6D86C4928E94681006A46E7 /* SceneDelegate.swift in Sources */,
 				E6D86C8C28E94A02006A46E7 /* CategoriesAutoLayout.swift in Sources */,
 				E61B90C028F63C5C00B23304 /* Service.swift in Sources */,
+				E69C045A2906350800E30829 /* MyListTableViewCell.swift in Sources */,
+				E69C0451290632D300E30829 /* FilmViewModel.swift in Sources */,
+				E69C045C2906351200E30829 /* MyListCollectionViewCell.swift in Sources */,
+				E69C044D2906324600E30829 /* Repository.swift in Sources */,
 				E61B90CF28F7679E00B23304 /* HorizontalFlowLayout.swift in Sources */,
 				E6D86C8528E94A02006A46E7 /* UIView+CornerRadius.swift in Sources */,
 				E6D86C9828E9EB5C006A46E7 /* Movie.swift in Sources */,

@@ -89,6 +89,7 @@ class RecommendationsViewController: UIViewController {
             newsCollection.bottomAnchor.constraint(equalTo: view.bottomAnchor)
         ])
     }
+
 }
 
 // Custom delegate to push the description screen.

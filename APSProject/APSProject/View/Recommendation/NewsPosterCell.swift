@@ -2,7 +2,8 @@
 import UIKit
 
 class NewsPosterCell: UICollectionViewCell {
-    
+    let actionCgColor = CGColor(red: 1.00, green: 0.86, blue: 0.38, alpha: 1.00)
+
     var film: Film? {
         didSet {
             guard let unwrappedFilm = film else { return }
@@ -85,6 +86,18 @@ class NewsPosterCell: UICollectionViewCell {
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+
+    override var isSelected: Bool {
+        didSet {
+            if isSelected {
+                layer.borderColor = actionCgColor
+                layer.borderWidth = 2
+            } else {
+                layer.borderColor = UIColor.clear.cgColor
+                layer.borderWidth = 0
+            }
+        }
     }
     
     private func setupPoster() {
